@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
-# of the product and file versions while build-number is used as the build suffix.
+# of the product and file-version while build-number is used as the build suffix.
 # update when release
 version: 2.1.4+1
 
@@ -149,3 +149,10 @@ dependencies:
   protobuf: ^6.0.0
   re_highlight: ^0.0.3
   saver_gallery: ^5.0.2
+
+dependency_overrides:
+  cached_network_image_ce:
+    git:
+      url: https://github.com/bggRGjQaUbCoE/flutter_cached_network_image_ce.git
+      path: cached_network_image
+      ref: develop
