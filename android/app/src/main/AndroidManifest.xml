@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.piliplus">
+    package="com.example.piliplus.fork">
 
     <queries>
         <intent>
@@ -92,21 +93,11 @@
                 <data android:host="bilibili.cn" />
                 <data android:host="bilibili.tv" />
                 <data android:host="b23.tv" />
-                <!--<data android:host="live.bilibili.com"/>-->
-                <!--<data android:host="www.bilibili.com"/>-->
-                <!--<data android:host="www.bilibili.tv"/>-->
-                <!--<data android:host="www.bilibili.cn"/>-->
-                <!--<data android:host="m.bilibili.cn"/>-->
-                <!--<data android:host="m.bilibili.com"/>-->
-                <!--<data android:host="bilibili.cn"/>-->
-                <!--<data android:host="bilibili.com"/>-->
-                <!--<data android:host="bangumi.bilibili.com"/>-->
-                <!--<data android:host="space.bilibili.com"/>-->
             </intent-filter>
             <intent-filter android:label="PiliPlus">
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.SEARCH" />
-                <action android:name="com.example.piliplus.SHORTCUT" />
+                <action android:name="com.example.piliplus.fork.SHORTCUT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -247,6 +238,8 @@
             android:value="2" />
     </application>
 
+    <!-- 权限列表：加入 ACCESS_LOCAL_NETWORK -->
+    <uses-permission android:name="android.permission.ACCESS_LOCAL_NETWORK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

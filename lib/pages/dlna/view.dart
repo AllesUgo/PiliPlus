@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:PiliPlus/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
@@ -7,6 +8,7 @@ import 'package:PiliPlus/common/widgets/view_sliver_safe_area.dart';
 import 'package:dlna_dart/dlna.dart';
 import 'package:get/get.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class DLNAPage extends StatefulWidget {
   const DLNAPage({super.key});
@@ -40,6 +42,23 @@ class _DLNAPageState extends State<DLNAPage> {
       _deviceList.clear();
       setState(() {});
     }
+
+    // 请求本地网络访问权限（Android 14+ / Android 17 需要 ACCESS_LOCAL_NETWORK）
+    if (Platform.isAndroid) {
+      final status = await Permission.accessLocalNetwork.request();
+      if (!status.isGranted) {
+        // 权限被拒绝，恢复状态并返回
+        if (mounted) {
+          setState(() {
+            _isSearching = false;
+          });
+        } else {
+          _isSearching = false;
+        }
+        return;
+      }
+    }
+
     final deviceManager = await _searcher.start();
     if (!mounted) {
       return;
@@ -110,8 +129,7 @@ class _DLNAPageState extends State<DLNAPage> {
           return ListTile(
             title: Text(
               device.info.friendlyName,
-              style: isCurr ? TextStyle(color: colorScheme.primary) : null,
-            ),
+            , style: isCurr ? TextStyle(color: colorScheme.primary) : null,),
             subtitle: Text(key),
             onTap: () async {
               if (isCurr) return;
